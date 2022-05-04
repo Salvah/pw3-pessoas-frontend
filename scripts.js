@@ -100,7 +100,7 @@ const  criarLinha = ({id, nome, sobrenome, dtnasc}) => {
 
 const carregaPessoas = async () => {
     const [tbody] = document.getElementsByTagName('tbody')
-    tbody.innerHTML = "";
+    tbody.innerHTML = ""
 
     const response = await fetch(`${baseUrl}index.php`)
     const pessoas = await response.json()
