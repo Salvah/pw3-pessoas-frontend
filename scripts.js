@@ -135,7 +135,6 @@ const atualizarLinha = (pessoa) => {
     const [tbody] = document.getElementsByTagName('tbody')
     tbody.childNodes.forEach(tr=> {
         if (tr.getAttribute('id') == pessoa.id) {
-
             const nova = criarLinha(pessoa)
             tbody.insertBefore(nova, tr)
             tbody.removeChild(tr)
