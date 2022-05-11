@@ -49,8 +49,16 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-        <button id="salvar" type="button" class="btn btn-success">Salvar</button>
-        <button id="alterar" type="button" class="btn btn-success">Alterar</button>
+        <button id="salvar" class="btn btn-success" type="button">
+          <span class="visually-hidden spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span class="visually-hidden">Cadastrando...</span>
+          <span>Salvar</span>          
+        </button>
+        <button id="alterar" class="btn btn-success" type="button">
+          <span class="visually-hidden spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span class="visually-hidden">Alterando...</span>
+          <span>Salvar</span>          
+        </button>
       </div>
     </div>
   </div>

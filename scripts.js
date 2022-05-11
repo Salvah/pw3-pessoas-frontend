@@ -10,6 +10,8 @@ onload = async () => {
     btnAlterar = document.getElementById("alterar")
 
     btnSalvar.addEventListener("click", async () => {
+        toggleButton(btnSalvar)
+
         const nome = document.getElementById("nome").value
         const sobrenome = document.getElementById("sobrenome").value
         const dtnasc = document.getElementById("dtnasc").value
@@ -30,9 +32,11 @@ onload = async () => {
         tbody.appendChild(tr)
 
         modal.hide();
+        toggleButton(btnSalvar)
     })
 
     btnAlterar.addEventListener('click', async () => {
+        toggleButton(btnAlterar)
         const nome = document.getElementById("nome").value
         const sobrenome = document.getElementById("sobrenome").value
         const dtnasc = document.getElementById("dtnasc").value
@@ -51,6 +55,7 @@ onload = async () => {
         atualizarLinha(pessoa)
 
         modal.hide();
+        toggleButton(btnAlterar)
     })
 
     const novo = document.getElementById("novo")
@@ -84,16 +89,16 @@ const  criarLinha = ({id, nome, sobrenome, dtnasc}) => {
         await response.json()
         
         // await carregaPessoas()
-        body.childNodes.forEach(tr=> {
+        const [tbody] = document.getElementsByTagName('tbody')
+        tbody.childNodes.forEach(tr=> {
             if (tr.getAttribute('id') == id) 
-                body.removeChild(tr)
+                tbody.removeChild(tr)
         })
     })
 
     const td = document.createElement("TD")
     td.appendChild(btnEdit)
     td.appendChild(btnDelete)
-    
     tr.appendChild(td)
     return tr;
 }
@@ -138,6 +143,15 @@ const atualizarLinha = (pessoa) => {
             const nova = criarLinha(pessoa)
             tbody.insertBefore(nova, tr)
             tbody.removeChild(tr)
+        }
+    })
+}
+
+const toggleButton = btn => {
+    btn.disabled = !btn.disabled
+    btn.childNodes.forEach((el) => {
+        if (el.nodeName === 'SPAN'){
+            el.classList.toggle('visually-hidden')
         }
     })
 }
