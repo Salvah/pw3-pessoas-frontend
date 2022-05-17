@@ -4,10 +4,13 @@ let modal = null
 let btnSalvar = null
 let btnAlterar = null
 
+let loading = null
+
 onload = async () => {
     modal = new bootstrap.Modal(document.getElementById('exampleModal'))
     btnSalvar = document.getElementById("salvar")
     btnAlterar = document.getElementById("alterar")
+    loading = document.getElementById('loading')
 
     btnSalvar.addEventListener("click", async () => {
         toggleButton(btnSalvar)
@@ -83,6 +86,7 @@ const  criarLinha = ({id, nome, sobrenome, dtnasc}) => {
     })
     
     const btnDelete = novoBotao('danger', 'trash', async () => {
+        toggleLoading()
         const response = await fetch(`${baseUrl}remover.php?id=${id}`,{
             method: "DELETE"
         })
@@ -94,6 +98,7 @@ const  criarLinha = ({id, nome, sobrenome, dtnasc}) => {
             if (tr.getAttribute('id') == id) 
                 tbody.removeChild(tr)
         })
+        toggleLoading()
     })
 
     const td = document.createElement("TD")
@@ -104,6 +109,7 @@ const  criarLinha = ({id, nome, sobrenome, dtnasc}) => {
 }
 
 const carregaPessoas = async () => {
+    toggleLoading()
     const [tbody] = document.getElementsByTagName('tbody')
     tbody.innerHTML = ""
 
@@ -113,6 +119,7 @@ const carregaPessoas = async () => {
         const tr = criarLinha(pessoa)
         tbody.appendChild(tr)
     })  
+    toggleLoading()
 }
 
 const novoBotao = (color, icon, cb, label = "") => {
@@ -155,3 +162,6 @@ const toggleButton = btn => {
         }
     })
 }
+
+const toggleLoading = () => 
+    loading.classList.toggle('visually-hidden')

@@ -6,3 +6,13 @@ tr>td:last-child {
 tr>td:last-child > button ~ button {
     margin-left: 5px;
 }
+
+#loading{
+    top:0; 
+    bottom:0; 
+    z-index:99; 
+    width: 100vw; 
+    height: 100vh; 
+    background-color: rgba(0,0,0,.2);
+    padding-top:25%;
+}
